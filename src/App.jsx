@@ -5,8 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
 import DogCard from './components/DogCard.jsx';
 import './App.css'
 
@@ -36,7 +35,9 @@ function App() {
   if (isLoading) {
     return (
       <div className="App">
-        <h1>Cargando...</h1>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
       </div>
     );
   }
@@ -54,7 +55,7 @@ function App() {
 
       {
         dogs.map((item) => {
-           return <DogCard key={item} imageUrl={item} />
+          return <DogCard key={item} imageUrl={item} />
         })
       }
     </div>
