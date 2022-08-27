@@ -35,9 +35,7 @@ function App() {
   if (isLoading) {
     return (
       <div className="App">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        <Spinner animation="grow" variant="dark" />
       </div>
     );
   }
