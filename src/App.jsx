@@ -17,7 +17,7 @@ function App() {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    fetch("https://dog.ceo/api/breed/hound/images/random/10")
+    fetch("https://dog.ceo/api/breed/hound/images/random/20")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.message);
@@ -41,6 +41,8 @@ function App() {
   }
   return (
     <div className="App">
+      <div class="centered">
+      <section class="cards">
       {/* <img src={imageUrl} alt="Imagen de perrito aleatoria" />
       <button>
         ¡Otro!{" "}
@@ -56,6 +58,8 @@ function App() {
           return <DogCard key={item} imageUrl={item} />
         })
       }
+      </section>
+      </div>
     </div>
   );
 }
