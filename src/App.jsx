@@ -10,14 +10,15 @@ import DogCard from './components/DogCard.jsx';
 import './App.css'
 
 function App() {
-  const [dogs, setDogs] = useState();
+  const [dogs, setDogs] = useState([]);
+  const [razas, setRazas] = useState();
   const [error, setError] = useState(null);
-
   const [isLoading, setIsLoading] = useState(true);
-  const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    fetch("https://dog.ceo/api/breed/hound/images/random/20")
+
+    //Cargo en el init todos los perros de ésta api
+    fetch("https://dog.ceo/api/breed/hound/images/random/200")
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.message);
@@ -31,7 +32,28 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+
+    fetch("https://dog.ceo/api/breeds/list/all")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+        setRazas(data.message);
+      },
+        (error) => {
+          setIsLoading(true);
+          setError(error);
+        }
+      )
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+
+  useEffect(() => {
+
+  }, [])
+
+
   if (isLoading) {
     return (
       <div className="App">
@@ -42,23 +64,14 @@ function App() {
   return (
     <div className="App">
       <div class="centered">
-      <section class="cards">
-      {/* <img src={imageUrl} alt="Imagen de perrito aleatoria" />
-      <button>
-        ¡Otro!{" "}
-        <span role="img" aria-label="corazón">
-          ❤️
-        </span>
-
-        
-      </button> */}
-
-      {
-        dogs.map((item) => {
-          return <DogCard key={item} imageUrl={item} />
-        })
-      }
-      </section>
+        <section class="cards">
+          {
+            dogs.length && (
+              dogs.map((item) => {
+                return <DogCard key={item} imageUrl={item} className="imgCard" />
+              }))
+          }
+        </section>
       </div>
     </div>
   );
