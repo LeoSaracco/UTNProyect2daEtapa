@@ -62,15 +62,16 @@ function App() {
   return (
     <div className="App">
       <div class="centered">
-        <section class="cards">
-          <Filter razas={razas} setFilter={setFilter} />
-          {
-            dogs.length && (
-              dogs.map((item) => {
+        {
+          dogs.length > 0 && (
+            <section class="cards">
+              <Filter razas={razas} setDogs={setDogs} />
+              {dogs.map((item) => {
                 return <DogCard key={item} imageUrl={item} className="imgCard" />
-              }))
-          }
-        </section>
+              })}
+            </section>
+          )
+        }
       </div>
     </div>
   );
