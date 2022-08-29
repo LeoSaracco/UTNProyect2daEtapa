@@ -4,16 +4,19 @@ import reactLogo from './assets/react.svg'
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
 import Spinner from 'react-bootstrap/Spinner';
+
 import DogCard from './components/DogCard.jsx';
+import Filter from './components/Filter';
+
 import './App.css'
 
 function App() {
   const [dogs, setDogs] = useState([]);
-  const [razas, setRazas] = useState();
+  const [razas, setRazas] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState(""); //null?
 
   useEffect(() => {
 
@@ -36,7 +39,7 @@ function App() {
     fetch("https://dog.ceo/api/breeds/list/all")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.message);
+        //console.log(data.message);
         setRazas(data.message);
       },
         (error) => {
@@ -49,11 +52,6 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-
-  }, [])
-
-
   if (isLoading) {
     return (
       <div className="App">
@@ -65,6 +63,7 @@ function App() {
     <div className="App">
       <div class="centered">
         <section class="cards">
+          <Filter razas={razas} setFilter={setFilter} />
           {
             dogs.length && (
               dogs.map((item) => {

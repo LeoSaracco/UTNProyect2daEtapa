@@ -1,25 +1,29 @@
 import React from "react";
+import Form from 'react-bootstrap/Form';
 
-const Filter = ({ filter_items, setFilter }) => {
+const Filter = ({ razas, setFilter }) => {
     const handleFilter = (e) => {
-        setFilter((prevState) => (prevState = e.target.value));
-    };
+        setFilter(e.target.value)
+        alert(e.target.value)
+      };
+
     return (
-        <div className="select">
-            <select
+        <>
+            {
+                <Form.Select
                 onChange={handleFilter}
-                className="custom-select"
-                aria-label="Filtro de raza de perros..."
-            >
-                <option value="">Todos</option>
-                {filter_items.map((item) => (
-                    <option key={item} value={item}>
-                        {item}
-                    </option>
-                ))}
-            </select>
-            <span className="focus"></span>
-        </div>
+                >
+                
+                    <option value="">Razas...</option>
+                    {Object.keys(razas).map((item) => (
+                        <option key={item} value={item}>
+                            {item}
+                        </option>
+                    ))}
+                
+                </Form.Select>
+            }
+        </>
     );
 };
 
