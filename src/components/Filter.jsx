@@ -7,8 +7,7 @@ const Filter = ({ razas, setDogs }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleFilter = (e) => {
-        setIsLoading(true);
-        setDogs([])
+        e.preventDefault();       
         fetch(`https://dog.ceo/api/breed/${e.target.value}/images/random/9`)
             .then((response) => response.json())
             .then((data) => {
