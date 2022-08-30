@@ -91,3 +91,8 @@ button:focus-visible {
 .filter {
   margin: 0px 0px 0.3rem 0px;
 }
+
+.btnNext{
+  margin: 0px 0px 8px 0px;
+  font-weight: bold;
+}

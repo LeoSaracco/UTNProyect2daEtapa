@@ -8,7 +8,7 @@ const Filter = ({ razas, setDogs }) => {
 
     const handleFilter = (e) => {
         e.preventDefault();       
-        fetch(`https://dog.ceo/api/breed/${e.target.value}/images/random/9`)
+        fetch(`https://dog.ceo/api/breed/${e.target.value}/images/random/200`)
             .then((response) => response.json())
             .then((data) => {
                 setDogs(data.message);
@@ -21,8 +21,6 @@ const Filter = ({ razas, setDogs }) => {
             .finally(() => {
                 setIsLoading(false);
             });
-        // setDogs(e.target.value)
-        // alert(e.target.value)
     };
 
     if (isLoading) {

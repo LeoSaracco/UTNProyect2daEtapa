@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
@@ -8,7 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import DogCard from './components/DogCard.jsx';
 import Filter from './components/Filter';
-
+import LoadNext from './components/LoadNext';
 import './App.css'
 
 function App() {
@@ -16,7 +15,7 @@ function App() {
   const [razas, setRazas] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState(""); //null?
+  const [paginate, setPaginate] = useState(12);
 
   useEffect(() => {
 
@@ -52,6 +51,11 @@ function App() {
       });
   }, []);
 
+  function load_next() {
+    setPaginate((prevState) => prevState + 12);
+  }
+
+
   if (isLoading) {
     return (
       <div className="App">
@@ -60,21 +64,28 @@ function App() {
     );
   }
   return (
-    <div className="App">
-      <div class="centered">
-
-        {
-          dogs.length > 0 && (
-            <><Filter razas={razas} setDogs={setDogs} />
-              <section class="cards">
-                {dogs.map((item) => {
-                  return <DogCard key={item} imageUrl={item} className="imgCard" />;
-                })}
+    <>
+      <div className="App">
+        <div className="centered">
+          {dogs.length > 0 && (
+            <>
+              <div class="btnNext">
+                <LoadNext load_next={load_next} />
+              </div>
+              <Filter razas={razas} setDogs={setDogs} />
+              <section className="cards">
+                {
+                  dogs
+                    .slice(0, paginate)
+                    .map((item) => {
+                      return <DogCard key={item} imageUrl={item} />;
+                    })
+                }
               </section></>
-          )
-        }
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
