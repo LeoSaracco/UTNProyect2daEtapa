@@ -62,10 +62,11 @@ function App() {
   return (
     <div className="App">
       <div class="centered">
+      <Filter razas={razas} setDogs={setDogs} />
         {
           dogs.length > 0 && (
             <section class="cards">
-              <Filter razas={razas} setDogs={setDogs} />
+              
               {dogs.map((item) => {
                 return <DogCard key={item} imageUrl={item} className="imgCard" />
               })}

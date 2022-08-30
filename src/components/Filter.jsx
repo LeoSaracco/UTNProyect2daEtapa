@@ -9,7 +9,7 @@ const Filter = ({ razas, setDogs }) => {
     const handleFilter = (e) => {
         setIsLoading(true);
         setDogs([])
-        fetch(`https://dog.ceo/api/breed/${e.target.value}/images/random/5`)
+        fetch(`https://dog.ceo/api/breed/${e.target.value}/images/random/9`)
             .then((response) => response.json())
             .then((data) => {
                 setDogs(data.message);
