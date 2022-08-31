@@ -8,6 +8,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import DogCard from './components/DogCard.jsx';
 import Filter from './components/Filter';
 import LoadNext from './components/LoadNext';
+import ModalDog from './components/ModalDog.jsx';
+
 import './App.css'
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
       )
       .finally(() => {
         setIsLoading(false);
+
       });
 
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -66,12 +69,19 @@ function App() {
   return (
     <>
       <div className="App">
-        <div className="centered">
+        <div className="container d-flex flex-wrap">
           {dogs.length > 0 && (
             <>
-              <div class="btnNext">
-                <LoadNext load_next={load_next} />
-              </div>
+              <ul className="listaButtons">
+                <li>
+                  <div class="btnNext">
+                    <LoadNext load_next={load_next} />
+                  </div>
+                </li>
+                <li>
+                  <ModalDog setDogs={setDogs} dogs={dogs} />
+                </li>
+              </ul>
               <Filter razas={razas} setDogs={setDogs} />
               <section className="cards">
                 {
