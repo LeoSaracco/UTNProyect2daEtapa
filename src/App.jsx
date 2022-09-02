@@ -20,7 +20,6 @@ function App() {
   const [paginate, setPaginate] = useState(12);
 
   useEffect(() => {
-
     //Cargo en el init todos los perros de ésta api
     fetch("https://dog.ceo/api/breed/hound/images/random/100")
       .then((response) => response.json())
@@ -34,10 +33,7 @@ function App() {
         }
       )
       .finally(() => {
-        //setDogs(dogs => [...dogs, "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"]);
-
         setIsLoading(false);
-
       });
 
     fetch("https://dog.ceo/api/breeds/list/all")
@@ -53,7 +49,6 @@ function App() {
       )
       .finally(() => {
         setIsLoading(false);
-
       });
   }, []);
 
