@@ -8,15 +8,15 @@ const ModalDog = ({ setDogs, dogs }) => {
   const [value, setValue] = useState();
 
   const handleClose = () => {
-    //alert("Valor: " + value);
-
+    setShow(false)
+  };
+  const handleSave = () => {
     if (value.includes(".jpg")) {
       setDogs(dogs => [...dogs, value]);
       setShow(false)
     } else {
       alert("Pone un formato .jpg papu")
     }
-
   };
   const handleShow = () => setShow(true);
   return (
@@ -46,7 +46,7 @@ const ModalDog = ({ setDogs, dogs }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>
